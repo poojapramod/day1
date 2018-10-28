@@ -1,0 +1,49 @@
+<div class="col-sm-4">
+  <div class="signup-form"><!--sign up form-->
+    <h2>Register!</h2>
+    <form [formGroup]='signupForm' (ngSubmit)="PostData(signupForm)"> 
+
+      <input type="text" formControlName='name' name='name' id='name' placeholder="Name"> 
+      <div *ngIf="signupForm.controls['name'].touched && !signupForm.controls['name'].valid"> 
+            Name is required  
+      </div>    
+      <input type="email" formControlName ='email' placeholder="Email Address"/>
+       <div *ngIf="signupForm.controls['email'].touched && !signupForm.controls['email'].valid">  
+        <span *ngIf="signupForm.controls['email'].hasError('required') ">  
+           Email ID is needed  
+             </span>  
+            
+        <span *ngIf="signupForm.controls['email'].hasError('email') ">  
+             Invalid Email ID  
+              </span>  
+                         
+      </div>
+      <input type="text" formControlName ='mobile' placeholder="Mobile No"/>  
+      <div *ngIf="signupForm.controls['mobile'].touched && !signupForm.controls['mobile'].valid">  
+            <span *ngIf="signupForm.controls['mobile'].hasError('required') ">  
+              mobile is needed
+            </span>              
+            <span *ngIf="signupForm.controls['mobile'].hasError('pattern') ">  
+              Enter valid no
+            </span>                                          
+      </div>   
+      <input type="password" formControlName ='password' placeholder="Password"/>
+      <div *ngIf="signupForm.controls['password'].touched && !signupForm.controls['password'].valid">  
+            <span *ngIf="signupForm.controls['password'].hasError('required') ">  
+              Pasword is needed
+            </span>              
+            <span *ngIf="signupForm.controls['password'].hasError('minLength') ">  
+              Enter Min 4 characters
+            </span> 
+            <span *ngIf="signupForm.controls['password'].hasError('maxLength') ">  
+              Enter Max 12 characters
+            </span>                                          
+      </div>
+      <input type="password" formControlName ='cpassword' placeholder="Confirm Password"/>
+      <div *ngIf="signupForm.controls['cpassword'].touched && !signupForm.controls['cpassword'].valid"> 
+           Confirm Password is Required
+      </div> 
+      <button type="submit" [disabled]="!signupForm.valid" class="btn btn-default" value="Post Data">Signup</button>
+    </form>
+  </div><!--/sign up form-->
+</div>
